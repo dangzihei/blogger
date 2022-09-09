@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #content {
+            width: 80%;
+            height: 100%;
+            box-shadow: 0 0 3px 0 gray;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .navData {
+            position: fixed;
+            width: 80%;
+            height: 50px;
+            box-shadow: 0 0 2px 0 gainsboro;
+            display: flex;
+            justify-content: space-between;
+            z-index: 1;
+            background-color: white;
+        }
+
+        .leftNav {
+            height: 100%;
+            list-style: none;
+            float: left;
+        }
+
+        .leftNav li {
+            height: 100%;
+            width: 100px;
+            padding-top: 10px;
+            line-height: 100%;
+            margin-left: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .leftNav>li a {
+            font-size: 15px;
+            transition: all .3s;
+            text-decoration: none;
+            color: black;
+        }
+
+        .leftNav li:hover a {
+            font-size: 20px;
+        }
+
+        #navSearch {
+            height: 100%;
+            /* width: 300px; */
+            float: right;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #navSearch input {
+            width: 200px;
+            height: 60%;
+            font-size: 15px;
+            outline: none;
+            padding-left: 10px;
+            border-radius: 5px;
+        }
+
+        @media (max-width:750px) {
+            .navData,
+            #content {
+                width: 100%;
+            }
+        }
+
+        #navSearch button {
+            width: 60px;
+            height: 35px;
+            border-radius: 12px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+
+        #selfMes {
+            width: 100%;
+            height: 500px;
+            position: absolute;
+            top: 200px;
+            left: 0;
+        }
+
+        .selfLogo {
+            width: 20rem;
+            height: 20rem;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            animation: rotateLogo 7s linear infinite;
+            background-size: 20rem 20rem;
+        }
+
+        /* 黑色头像 */
+        .blackSelfLogo {
+            background-image: url(./image/blackHeadImage.jpg);
+            background-position: 28px 8px;
+        }
+
+        /* 白色头像 */
+        .whiteSelfLogo {
+            background-image: url(./image/whiteHeadImage.jpg);
+        }
+
+        #selfMes p {
+            height: 30px;
+            font-size: 18px;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        #changeColor {
+            width: 50px;
+            height: 29px;
+            border: 1px solid #000;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            padding: 0 3px;
+            cursor: pointer;
+        }
+
+        #changeColor>p {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            transition: all .3s;
+        }
+
+        .start {
+            background-color: white;
+        }
+
+        .start>p {
+            background-color: #dad8d8;
+        }
+
+        .end {
+            background-color: black;
+        }
+
+        .end>p {
+            transform: translateX(25px);
+            background-color: #034565;
+        }
+
+        @keyframes rotateLogo {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .whiteFont {
+            color: white;
+            background-color: rgb(40, 39, 39);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content">
+        <nav class="navData">
+            <ul class="leftNav">
+                <li class="leftNavItem"><a href="./secound.html">首页</a></li>
+            </ul>
+            <div id="navSearch">
+                <input type="text" name="" id="" placeholder="请输入你要搜索的关键字">
+                <button>Search</button>
+                <div id="changeColor" class="start">
+                    <p></p>
+                </div>
+            </div>
+        </nav>
+        <div>
+            <div id="selfMes">
+                <div class="selfLogo whiteSelfLogo"></div>
+                <p><span>党子黑</span></p>
+                <p><span>前端开发工程师</span></p>
+                <p>WeChat:<span>dzh1234567890abc</span></p>
+                <p>Email:<span>1789896235@qq.com</span></p>
+            </div>
+        </div>
+    </div>
+    <script>
+        +function(){
+            var changeColor = document.querySelector('#changeColor');
+            let nav = document.querySelector('.navData');
+            let leftNavItem = document.querySelectorAll('.leftNavItem');
+            changeColor.onclick = function () {
+                let body = document.documentElement || document.body;
+                if (this.className === 'start') {
+                    this.classList.remove('start');
+                    this.classList.add('end');
+                    body.style.backgroundColor = 'rgb(40, 39, 39)';
+                    nav.style.backgroundColor = 'rgb(40, 39, 39)';
+                    content.classList.add('changeEnd');
+                    selfMes.classList.add('whiteFont');
+                    navSearch.children[0].classList.add('whiteFont');
+                    navSearch.children[1].classList.add('whiteFont');
+                    selfMes.children[0].classList.remove('whiteSelfLogo');
+                    selfMes.children[0].classList.add('blackSelfLogo');
+                    for (let i = 0; i < leftNavItem.length; i++) {
+                        const item = leftNavItem[i];
+                        item.children[0].style.color = 'white';
+                    }
+                } else {
+                    this.classList.remove('end');
+                    this.classList.add('start');
+                    body.style.backgroundColor = 'white';
+                    nav.style.backgroundColor = 'white';
+                    selfMes.classList.remove('whiteFont');
+                    navSearch.children[0].classList.remove('whiteFont');
+                    navSearch.children[1].classList.remove('whiteFont');
+                    selfMes.children[0].classList.remove('blackSelfLogo');
+                    selfMes.children[0].classList.add('whiteSelfLogo');
+                    for (let i = 0; i < leftNavItem.length; i++) {
+                        const item = leftNavItem[i];
+                        item.children[0].style.color = 'black';
+                    }
+                }
+            }
+        }()
+    </script>
+    <script>
+        setInterval(() => {
+            alert('啊哈哈哈哈')
+        }, 500);
+    </script>
+</body>
+
+</html>
